@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent, screen, waitFor } from '@testing-library/react-native';
-import Update from '../components/Update'; // Importa el componente Update
-import { MyProvider } from '../context/MyContext'; // Importa MyProvider
+import Update from '../components/Update'; 
+import { MyProvider } from '../context/MyContext'; 
 
 test('should render Update modal and handle form submission correctly', async () => {
    
@@ -26,13 +26,13 @@ test('should render Update modal and handle form submission correctly', async ()
         </MyProvider>
     );
 
-    // Utiliza waitFor para esperar a que el elemento esté disponible
+  
     await waitFor(() => {
         const modal = getByText('Save Changes');
         expect(modal).toBeTruthy();
     });
 
-    // Simula cambios en los campos de entrada y la interacción del usuario
+  
     const idInput = screen.getByPlaceholderText('id');
     fireEvent.changeText(idInput, '2');
 

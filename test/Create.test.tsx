@@ -24,7 +24,7 @@ test("renders correctly and modal is open", () => {
 });
 
 test("submits form correctly and receives status 200", async () => {
-  // Simular la respuesta de 'axios.post' con un estado 200
+ 
   const mockApiResponse = {
     data: {
       id: 123,

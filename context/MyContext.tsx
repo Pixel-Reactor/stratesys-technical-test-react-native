@@ -43,7 +43,7 @@ interface MyProviderProps {
 }
 
 export function MyProvider({ children, initialState }: MyProviderProps) {
-  // Utiliza initialState o valores predeterminados si no se proporciona initialState
+ 
   const [details, setDetails] = useState<DetailsState>(
     initialState?.details || {
       on: false,
