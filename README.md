@@ -8,10 +8,10 @@ https://jsonplaceholder.typicode.com/
 fake api to fecth, send, or update a user object data.
 #### Note: 
 As the jsonplaceholder.typicode.com doesn't provides a free storage api, the response we receive will be faked returning the same object we send to it.
-It provides a solucion with Mockend but it need to register a credit card to be able to use it, so i create a custom fake api server with custom data to be fetched the first time the app starts.
+It provides a solucion with Mockend but it need to register a credit card to be able to use it, so i create a custom fake api server with custom data (still using the jsonplaceholder.typicode.com api) to be fetched the first time the app starts.
 It can be found in repository in my account 
 https://github.com/Pixel-Reactor/jsondb .
-For this reason , the app will make a call and wait for a successful response, thefore, the new, deleted or updated data will be handled by a global state that handle the list int he context.
+For this reason , the app will make a call and wait for a successful response, thefore, the new, deleted or updated data will be handled by a global state that handle the list in the context.
 # App structure
 
 The App is written in TypeScript and uses TailWind (Native/Wind) to styles the components.
