@@ -17,6 +17,7 @@ type RootStackParamList = {
   Create: undefined;
   Search: undefined;
 };
+
 export default function Create() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 

@@ -18,6 +18,24 @@ test('renders correctly and modal is open', () => {
   
   const deleteButton = getByText('Delete');
   expect(deleteButton).toBeDefined();
+  const idText = getByText('1');
+  expect(idText).toBeDefined();
+
+  
+  const nameAndSurnameText = getByText('John Doe');
+  expect(nameAndSurnameText).toBeDefined();
+
+
+  const phoneText = getByText('9879879');
+  expect(phoneText).toBeDefined();
+
+
+  const addressText = getByText('123 Main St');
+  expect(addressText).toBeDefined();
+
+
+  const emailText = getByText('john.doe@example.com');
+  expect(emailText).toBeDefined();
 });
 
 
@@ -26,7 +44,14 @@ const TestComponent = () => {
 
   useEffect(() => {
    
-    setDetails({ on: true, data: null });
+    setDetails({ on: true, data: {
+      id: 1,
+      name: 'John',
+      surname: 'Doe',
+      phone: 9879879,
+      address: '123 Main St',
+      email: 'john.doe@example.com',
+  } });
   }, [setDetails]);
 
   return <Details />;

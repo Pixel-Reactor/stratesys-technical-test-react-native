@@ -27,7 +27,7 @@ describe('Search Component', () => {
 
     expect(getByText('Loading...')).toBeDefined();
 
-    // Wait for the loading indicator to disappear
+
     await waitFor(() => {
         expect(getByText('No user found')).toBeDefined();
     }, { timeout: 1000 });

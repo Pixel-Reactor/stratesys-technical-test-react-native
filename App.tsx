@@ -1,6 +1,6 @@
 import Home from "./screens/Home";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer, NavigationProp } from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import AddButton from "components/AddButton";
@@ -15,7 +15,7 @@ export default function App() {
  
   return (
     <MyProvider>
-      <NavigationContainer>
+      <NavigationContainer >
         <Tab.Navigator
           screenOptions={({ route }) => ({
             activeTintColor: "tomato",

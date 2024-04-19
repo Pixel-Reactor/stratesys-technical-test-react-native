@@ -1,22 +1,22 @@
 import React from "react";
 import Create from "../screens/Create";
-import { render, fireEvent, waitFor } from "@testing-library/react-native";
+import { render, fireEvent, waitFor, act } from "@testing-library/react-native";
 import { MyProvider } from "../context/MyContext";
 import { NavigationContainer } from "@react-navigation/native";
 import axios from "axios";
-
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Home from "../screens/Home";
 jest.mock("axios");
 const mockedAxios = axios as jest.Mocked<typeof axios>;
+const Tab = createBottomTabNavigator();
 
 test("renders correctly and modal is open", () => {
   const { getByText } = render(
-     
-        <MyProvider>
-     <NavigationContainer>
+    <MyProvider>
+      <NavigationContainer>
         <Create />
-       </NavigationContainer>
+      </NavigationContainer>
     </MyProvider>
-   
   );
 
   const createButton = getByText("Create");
@@ -24,7 +24,6 @@ test("renders correctly and modal is open", () => {
 });
 
 test("submits form correctly and receives status 200", async () => {
- 
   const mockApiResponse = {
     data: {
       id: 123,
@@ -40,14 +39,16 @@ test("submits form correctly and receives status 200", async () => {
   mockedAxios.post.mockResolvedValueOnce(mockApiResponse);
 
   const { getByPlaceholderText, getByText } = render(
-    <NavigationContainer>
-      <MyProvider>
+    <MyProvider>
+      <NavigationContainer>
+        <Tab.Navigator>
+          <Tab.Screen name="Home" component={Home} />
+        </Tab.Navigator>
         <Create />
-      </MyProvider>
-    </NavigationContainer>
+      </NavigationContainer>
+    </MyProvider>
   );
 
-  // Llenar los campos del formulario
   fireEvent.changeText(getByPlaceholderText("ID ex. 123"), "123");
   fireEvent.changeText(getByPlaceholderText("names"), "John");
   fireEvent.changeText(getByPlaceholderText("surname"), "Doe");
@@ -55,10 +56,9 @@ test("submits form correctly and receives status 200", async () => {
   fireEvent.changeText(getByPlaceholderText("address"), "123 Main St");
   fireEvent.changeText(getByPlaceholderText("email"), "john.doe@example.com");
 
-  // Hacer clic en el botón "Create"
-  fireEvent.press(getByText("Create"));
-
-  // Esperar a que la respuesta de axios sea recibida y verificarla
+  await act(async () => {
+    fireEvent.press(getByText("Create"));
+  });
   await waitFor(() => {
     expect(mockedAxios.post).toHaveBeenCalledTimes(1);
     expect(mockedAxios.post).toHaveBeenCalledWith(
@@ -72,7 +72,6 @@ test("submits form correctly and receives status 200", async () => {
         email: "john.doe@example.com",
       }
     );
-    // Verificar el estado de la respuesta
     expect(mockApiResponse.status).toBe(200);
   });
 });

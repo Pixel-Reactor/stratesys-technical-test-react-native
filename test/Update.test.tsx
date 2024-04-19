@@ -18,7 +18,6 @@ test('should render Update modal and handle form submission correctly', async ()
             }
         }
     };
-
    
     const { getByText } = render(
         <MyProvider initialState={initialState}>
